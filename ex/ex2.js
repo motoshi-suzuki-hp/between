@@ -33,23 +33,23 @@ var EUM = ENEMY + UM;
 var ERY = ENEMY + RY;
 
 var piece_board; //盤上の駒の画像のIDを入れておく変数
-var piece_black_capture; //先手の駒台の駒の画像のIDを入れておく変数
-var piece_white_capture; //後手の駒台の駒の画像のIDを入れておく変数
-var piece_promotion_window;  //成／不成を選択するウインドウに表示する駒の画像のIDを入れておく変数
-var promotion_window;  //成／不成を選択するウインドウの画像のIDを入れておく変数
+// var piece_black_capture; //先手の駒台の駒の画像のIDを入れておく変数
+// var piece_white_capture; //後手の駒台の駒の画像のIDを入れておく変数
+// var piece_promotion_window;  //成／不成を選択するウインドウに表示する駒の画像のIDを入れておく変数
+// var promotion_window;  //成／不成を選択するウインドウの画像のIDを入れておく変数
 
 var selectedFlgB;  //盤上の駒が選択された状態かどうか
-var selectedFlgC;  //持ち駒が選択された状態かどうか
-var PromotionWindowFlg;  //成／不成を選択するウインドウが表示されているかどうか
+// var selectedFlgC;  //持ち駒が選択された状態かどうか
+// var PromotionWindowFlg;  //成／不成を選択するウインドウが表示されているかどうか
 
 var clickRank,clickFile;  //駒を選択するときにクリックしたマスの段と筋
-var ToClickDan,ToClickSuji;  //用意したけどけっきょく使わなかった
+// var ToClickDan,ToClickSuji;  //用意したけどけっきょく使わなかった
 
 var selectedPiece; //選択された駒の種類
-var teban;  //手番 trueが先手番  falseが後手番
+// var teban;  //手番 trueが先手番  falseが後手番
 
 var board = []; //将棋盤の配列
-var capture = []; //持ち駒の配列
+// var capture = []; //持ち駒の配列
 
 var slb,slw;
 
@@ -65,10 +65,10 @@ Direction[4]  = new PiecePos(0,-1);  //→
 Direction[5]  = new PiecePos(-1,-1); //→↑
 Direction[6]  = new PiecePos(-1,0);  //↑
 Direction[7]  = new PiecePos(-1,1);  //←↑
-Direction[8]  = new PiecePos(-2,1);  //先手の桂馬飛び
-Direction[9]  = new PiecePos(-2,-1); //先手の桂馬飛び
-Direction[10] = new PiecePos(2,1);   //後手の桂馬飛び
-Direction[11] = new PiecePos(2,-1);  //後手の桂馬飛び
+// Direction[8]  = new PiecePos(-2,1);  //先手の桂馬飛び
+// Direction[9]  = new PiecePos(-2,-1); //先手の桂馬飛び
+// Direction[10] = new PiecePos(2,1);   //後手の桂馬飛び
+// Direction[11] = new PiecePos(2,-1);  //後手の桂馬飛び
 
 var CanGo = [
 //←
@@ -127,33 +127,33 @@ var CanGo = [
   0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,1
 ],
 
-//先手の桂馬飛び{-2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //先手の桂馬飛び{-2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//先手の桂馬飛び{2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //先手の桂馬飛び{2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//後手の桂馬飛び{-2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //後手の桂馬飛び{-2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//後手の桂馬飛び{2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //後手の桂馬飛び{2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
 ];
 
@@ -214,33 +214,33 @@ var CanJump = [
   0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
 ],
 
-//先手の桂馬飛び{-2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //先手の桂馬飛び{-2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//先手の桂馬飛び{2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //先手の桂馬飛び{2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//後手の桂馬飛び{-2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-],
+// //後手の桂馬飛び{-2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ],
 
-//後手の桂馬飛び{2,1}
-[
-//  歩香桂銀金角飛玉と杏圭全金馬竜
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-]
+// //後手の桂馬飛び{2,1}
+// [
+// //  歩香桂銀金角飛玉と杏圭全金馬竜
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+// ]
 
 ];
 //関数いろいろ
@@ -396,9 +396,9 @@ function Position(){
 	// this.Capture[0] = [];
 	// this.Capture[1] = [];
 	
-	this.FuFlg = [];
-	this.FuFlg[0] = [];
-	this.FuFlg[1] = [];
+	// this.FuFlg = [];
+	// this.FuFlg[0] = [];
+	// this.FuFlg[1] = [];
 	
 	for(var i = 0; i <= 6; i++){
 		this.Board[i] = [];
@@ -419,10 +419,10 @@ function Position(){
 	// }	
 	// }
 	
-	for(var i = 1; i <= 5; i++){
-		this.FuFlg[0][i] = false;
-		this.FuFlg[1][i] = false;
-	}	
+	// for(var i = 1; i <= 5; i++){
+	// 	this.FuFlg[0][i] = false;
+	// 	this.FuFlg[1][i] = false;
+	// }	
 	
 	this.turn = true;
 	this.blackKingPos = new PiecePos(0,0);
@@ -483,10 +483,10 @@ Position.prototype = {
 		// 	this.Capture[1][piece] = 0;
 		// }
 		
-		for(var i = 1; i <= 5; i++){
-			this.FuFlg[0][i] = true;
-			this.FuFlg[1][i] = true;
-		}
+		// for(var i = 1; i <= 5; i++){
+		// 	this.FuFlg[0][i] = true;
+		// 	this.FuFlg[1][i] = true;
+		// }
 		
 		// this.blackKingPos.rank = 9;
 		// this.blackKingPos.file = 5;
@@ -499,7 +499,7 @@ Position.prototype = {
 		if(move.from.file == 0 && move.from.rank == 0){
 			this.Board[move.to.rank][move.to.file] = move.piece;
 			// this.Capture[+this.turn][move.piece & ~ENEMY]--;
-			if((move.piece & ~ENEMY) == FU)this.FuFlg[+this.turn][move.to.file] = true;
+			// if((move.piece & ~ENEMY) == FU)this.FuFlg[+this.turn][move.to.file] = true;
 			this.turn = !this.turn;
 		}
 		
@@ -536,7 +536,7 @@ Position.prototype = {
 		if(move.from.file == 0 && move.from.rank == 0){
 			this.Board[move.to.rank][move.to.file] = EMPTY;
 			// this.Capture[+!this.turn][move.piece & ~ENEMY]++;
-			if((move.piece & ~ENEMY) == FU)this.FuFlg[+!this.turn][move.to.file] = false;
+			// if((move.piece & ~ENEMY) == FU)this.FuFlg[+!this.turn][move.to.file] = false;
 			this.turn = !this.turn;
 		}
 		
@@ -666,7 +666,8 @@ var showBoard = function(p){
 				var _rank = rank, _file = file;    //rankとfileは1ずつ足されていくので覚えておく
 				var ocp_pos = new PiecePos(rank,file);
 				c.onclick = function(){   //クリックされたらこの関数が呼び出される
-					(p.turn == BlackKoma(p.Board[ocp_pos.rank][ocp_pos.file]) && !PromotionWindowFlg) ? SelectSelfKoma(p,ocp_pos) : SelectEnemyKoma(p,ocp_pos);
+					// (p.turn == BlackKoma(p.Board[ocp_pos.rank][ocp_pos.file]) && !PromotionWindowFlg) ? SelectSelfKoma(p,ocp_pos) : SelectEnemyKoma(p,ocp_pos);
+					(p.turn == BlackKoma(p.Board[ocp_pos.rank][ocp_pos.file])) ? SelectSelfKoma(p,ocp_pos) : SelectEnemyKoma(p,ocp_pos);
 				};
 			})();
 		}
@@ -736,7 +737,7 @@ var SelectSelfKoma = function(p,pos){
 		b.appendChild(slw);
 	}
 	selectedFlgB = true; 
-	selectedFlgC = false; 
+	// selectedFlgC = false; 
 	selectedPiece = p.Board[pos.rank][pos.file];
 	clickRank = pos.rank; clickFile = pos.file; 
 };
@@ -789,7 +790,7 @@ var SelectSelfKoma = function(p,pos){
 
 //空のマスをクリックしたときにつかう関数
 var SelectEmptyCell = function(p,pos){ 
-	var cb = document.getElementById("capture_black"), cw = document.getElementById("capture_white");
+	// var cb = document.getElementById("capture_black"), cw = document.getElementById("capture_white");
 	
 	var sec_move = new Move();
 	
@@ -803,7 +804,7 @@ var SelectEmptyCell = function(p,pos){
 		sec_move.capture = EMPTY;
 		
 		selectedFlgB = false;   
-		selectedFlgC = false;
+		// selectedFlgC = false;
 		(p.turn) ? b.removeChild(slb) : b.removeChild(slw);
 		
 		// if(CanPromote(selectedPiece,p.turn,pos.rank,pos.file) || CanPromote(selectedPiece,p.turn,clickRank,clickFile)){
@@ -993,8 +994,8 @@ window.onload = function(){
 	
 	//選択フラグを初期化
 	selectedFlgB = false;
-	selectedFlgC = false;
-	PromotionWindowFlg = false;
+	// selectedFlgC = false;
+	// PromotionWindowFlg = false;
 	
 	//選択した状態の画像のIDを取得
 	slb = document.getElementById("selected_black");
