@@ -35,10 +35,10 @@ html {
     font-size: 3vw;
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-height:400px) {
         
     #TebanMessage {
         position:absolute;
-        bottom:-10vh;
+        bottom:-2vh;
     }
 }
