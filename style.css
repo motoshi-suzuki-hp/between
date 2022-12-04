@@ -27,12 +27,13 @@ html {
 
 
 #TebanMessage {
-    color: #ffffff;
     position:absolute;
     left: 50vw;
     transform: translateX(-50%);
     bottom:2vh;
     font-size: 3vw;
+    color: #FFF;
+    -webkit-text-stroke: 1px #000;
 }
 
 @media screen and (max-height:400px) {
