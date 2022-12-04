@@ -34,3 +34,11 @@ html {
     bottom:2vh;
     font-size: 3vw;
 }
+
+@media screen and (max-width:400px) {
+        
+    #TebanMessage {
+        position:absolute;
+        bottom:-5vh;
+    }
+}
