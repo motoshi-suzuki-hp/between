@@ -2,6 +2,7 @@
 let playing = false;
 let currentPlayer = 1;
 const timerPanel = document.querySelector('.player');
+const timerPanel_ref = document.querySelector('.player-ref');
 const buttons = document.querySelectorAll('.bttn');
 // Sound effects for project.
 // const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
@@ -28,8 +29,11 @@ class Timer {
     }
 }
 
-let p1time = new Timer('min1', document.getElementById('min1').textContent);
-let p2time = new Timer('min2', document.getElementById('min2').textContent);
+let p11time = new Timer('min11', document.getElementById('min11').textContent);
+let p12time = new Timer('min12', document.getElementById('min12').textContent);
+
+let p21time = new Timer('min11', document.getElementById('min21').textContent);
+let p22time = new Timer('min12', document.getElementById('min22').textContent);
 
 
 // Swap player's timer after a move (player1 = 1, player2 = 2).
@@ -67,17 +71,22 @@ const startTimer = () => {
             if (playing) {
                 // Disable start button.
                 buttons[0].disabled = true;
-                p1time.minutes = parseInt(p1time.getMinutes('min1'), 10);
+                p11time.minutes = parseInt(p11time.getMinutes('min11'), 10);
+                p21time.minutes = parseInt(p21time.getMinutes('min21'), 10);
                 if (p1sec === 60) {
-                    p1time.minutes = p1time.minutes - 1;
+                    p11time.minutes = p11time.minutes - 1;
+                    p21time.minutes = p21time.minutes - 1;
                 }
                 p1sec = p1sec - 1;
-                timeWarning(currentPlayer, p1time.minutes, p1sec);
-                document.getElementById('sec1').textContent = padZero(p1sec);
-                document.getElementById('min1').textContent = padZero(p1time.minutes);
+                timeWarning(currentPlayer, p11time.minutes, p1sec);
+                timeWarning(currentPlayer, p21time.minutes, p1sec);
+                document.getElementById('sec11').textContent = padZero(p1sec);
+                document.getElementById('min11').textContent = padZero(p11time.minutes);
+                document.getElementById('sec21').textContent = padZero(p1sec);
+                document.getElementById('min21').textContent = padZero(p21time.minutes);
                 if (p1sec === 0) {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
-                    if (p1sec === 0 && p1time.minutes === 0) {
+                    if ((p1sec === 0 && p11time.minutes === 0) || (p1sec === 0 && p21time.minutes === 0)) {
                         // Play a sound effect.
                         // timesUp.play();
                         // Stop timer.
@@ -90,17 +99,22 @@ const startTimer = () => {
         } else {
         // Player 2.
             if (playing) {
-                p2time.minutes = parseInt(p2time.getMinutes('min2'), 10);
+                p12time.minutes = parseInt(p12time.getMinutes('min12'), 10);
+                p22time.minutes = parseInt(p22time.getMinutes('min22'), 10);
                 if (p2sec === 60) {
-                    p2time.minutes = p2time.minutes - 1;
+                    p12time.minutes = p12time.minutes - 1;
+                    p22time.minutes = p22time.minutes - 1;
                 }
                 p2sec = p2sec - 1;
-                timeWarning(currentPlayer, p2time.minutes, p2sec);
-                document.getElementById('sec2').textContent = padZero(p2sec);
-                document.getElementById('min2').textContent = padZero(p2time.minutes);
+                timeWarning(currentPlayer, p12time.minutes, p2sec);
+                timeWarning(currentPlayer, p22time.minutes, p2sec);
+                document.getElementById('sec12').textContent = padZero(p2sec);
+                document.getElementById('min12').textContent = padZero(p12time.minutes);
+                document.getElementById('sec22').textContent = padZero(p2sec);
+                document.getElementById('min22').textContent = padZero(p22time.minutes);
                 if (p2sec === 0) {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
-                    if (p2sec === 0 && p2time.minutes === 0) {
+                    if ((p2sec === 0 && p12time.minutes === 0) || (p2sec === 0 && p22time.minutes === 0)) {
                         // Play a sound effect.
                         // timesUp.play();
                         // Stop timer.
@@ -117,6 +131,7 @@ const startTimer = () => {
 
 // Listen for a mouse click or tap on the screen to toggle between timers.
 timerPanel.addEventListener('click', swapPlayer);
+timerPanel_ref.addEventListener('click', swapPlayer);
 
 // Loop through the start and reset buttons.
 for (let i = 0; i < buttons.length; i++) {
