@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Noto+Serif+JP:wght@300&family=Parisienne&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 html {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
     background-color: black;
 }
 
@@ -28,12 +27,12 @@ html {
 
 #TebanMessage {
     position:absolute;
-    left: 50vw;
+    right: 5vw;
     transform: translateX(-50%);
-    bottom:2vh;
+    bottom:7vh;
     font-size: 3vw;
     color: #FFF;
-    -webkit-text-stroke: 1px #000;
+    font-weight: 700;
 }
 
 @media screen and (max-height:400px) {
@@ -58,7 +57,7 @@ html {
   body {
       width: 100%;
       height: 100%;
-      background-color: #14A7FF;
+      background-color: #000000;
   }
   
   body {
@@ -100,12 +99,12 @@ html {
   }
   
   .player__tile {
-      width: 100%;
-      height: 300px;
+      width: 15vw;
+      height: 100px;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      margin: 0 auto;
+      margin: 0;
       color: #000000;
       max-width: 400px;
       border-radius: 8px;
@@ -158,18 +157,23 @@ html {
   }
   
   .timer__start-bttn {
-      color: #FFFFFF;
-      background-color: #0071D5;
+      color: #2D2C2C;
+      background-color: #ffffff;
   }
   
   .timer__start-bttn:hover {
-      color: #000000;
-      background-color: #FFFFFF;
+      color: #ffffff;
+      background-color: #2D2C2C;
   }
+
+  .timer__reset-bttn {
+    color: #ffffff;
+    background-color: #2D2C2C;
+}
   
   .timer__reset-bttn:hover {
-      color: #FFFFFF;
-      background-color: #0071D5;
+      color: #2D2C2C;
+      background-color: #ffffff;
   }
   
   footer p {
@@ -228,8 +232,11 @@ html {
   }
   
   @media only screen and (min-width: 850px) {
+    .timer-content {
+        display: flex;
+    }
       .player {
-          margin: 1em auto 10px auto;
+          margin: 1em 0 10px;
           max-width: 810px;
           -webkit-box-orient: horizontal;
           -webkit-box-direction: normal;
@@ -237,19 +244,19 @@ html {
                   flex-direction: row;
       }
       .player__tile {
-          height: 400px;
+          /* height: 400px; */
       }
       .player-2 {
           margin-top: 0;
       }
       .player__digits {
-          font-size: 7rem;
+          font-size: 4rem;
       }
       .timer__buttons {
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
-          margin: 0 auto;
+          margin:  1em 0 10px;
           max-width: 810px;
       }
       .timer__start-bttn, 
@@ -258,3 +265,8 @@ html {
           font-size: 1.8rem;
       }
   }
+
+
+.reflect-xy {
+    transform: scale(-1, -1);
+}
