@@ -51,9 +51,11 @@ const timeWarning = (player, min, sec) => {
     // Change the numbers to red during the last 30 seconds.
     if (min < 1 && sec <= 30) {
         if (player === 1) {
-            document.querySelector('.player-1 .player__digits').style.color = '#CC0000';
+            document.querySelector('.player-11 .player__digits').style.color = '#CC0000';
+            document.querySelector('.player-21 .player__digits').style.color = '#CC0000';
         } else {
-            document.querySelector('.player-2 .player__digits').style.color = '#CC0000';
+            document.querySelector('.player-21 .player__digits').style.color = '#CC0000';
+            document.querySelector('.player-22 .player__digits').style.color = '#CC0000';
         }
     }
 }
@@ -92,6 +94,7 @@ const startTimer = () => {
                         // Stop timer.
                         clearInterval(timerId);
                         playing = false;
+                        alert( "Black lost" );
                     }
                     p1sec = 60;
                 }
@@ -120,6 +123,7 @@ const startTimer = () => {
                         // Stop timer.
                         clearInterval(timerId);
                         playing = false;
+                        alert( "White lost" );
                     }
                     p2sec = 60;
                 }
@@ -154,3 +158,4 @@ document.addEventListener('keypress', event => {
         swapPlayer();
     }
 });
+

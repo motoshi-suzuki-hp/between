@@ -134,9 +134,8 @@ html {
                   inset 4px -4px 0 #000;
   }
   
-  .player-2 {
+  .player-12, .player-22 {
       color: #2D2C2C;
-      margin-top: 5px;
       background-color: #ffffff;
   }
   
