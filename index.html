@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./reset.css">
     <script type="text/javascript" src="./between.js"></script>
-    <script type="text/javascript" src="./timer.js"></script>
+    <script type="text/javascript" src="./gameclock.js"></script>
     
   
   </head>
@@ -87,134 +87,78 @@
 
     <div id="TebanMessage"></div>
 
-
-    <div class="timer" 	onLoad="reset();"
-    ondblclick="switch_bw();return false;"
-    onclick="game_start();return false;">
-      <table>
-        <tr>
-         <th class="ban">
-          Black<br />
-          <img src="b2.png" width="40" height="40" alt="." />
-         </th>
-         <td id="BlackTime" class="off"></td>
-        </tr>
-        <tr>
-         <th class="ban">
-          White<br />
-          <img src="w2.png" width="40" height="40" alt="." />
-         </th>
-         <td id="WhiteTime" class="off"></td>
-        </tr>
-       </table>
-       <p>
-        <br />
-       </p>
-       <form action="" method="" name="f">
-        <table>
-         <tr>
-          <th>
-           Info.
-          </th>
-          <td>
-           <!--簡易設定(B黒時間,W白時間,F追加時間,D遅延時間,BYO秒読み)-->
-           <select onchange="ez_set(this.value)">
-            <option value="10,10,3,1,3">
-             Easy setting 簡易設定
-            </option>
-            <option value="600,600,10,0,0">
-             Fischer (iGo) ★推奨★
-            </option>
-            <option value="1800,1800,0,4,0">
-             Absolute 30 min - 30分切れ負け 遅延4sec
-            </option>
-            <option value="2400,2400,0,0,0">
-             Absolute 40 min - 40分切れ負け
-            </option>
-            <option value="600,600,0,0,10">
-             Byo-Yomi 10sec 秒読み10秒
-            </option>
-            <option value="10,10,4,2,5">
-             TEST
-            </option>
-           </select> <input type="button" value="Start" onclick="game_start()" /> <input type="button"
-           value="Stop" onclick="clock_stop()" /> delay<input type="text" name="dt" size="2" />
-           moves<input type="text" name="moves" size="3" />
-          </td>
-         </tr>
-         <tr>
-          <th>
-           Black
-          </th>
-          <td>
-           <input type="text" name="bt" size="4" value="60" />sec 黒の初期考慮時間
-          </td>
-         </tr>
-         <tr>
-          <th>
-           White
-          </th>
-          <td>
-           <input type="text" name="wt" size="4" value="60" />sec 白の初期考慮時間
-          </td>
-         </tr>
-         <tr>
-          <th>
-           Fischer
-          </th>
-          <td>
-           <input type="text" name="fischer" size="3" value="0" />sec １手毎に加算される考慮時間
-          </td>
-         </tr>
-         <tr>
-          <th>
-           Delay
-          </th>
-          <td>
-           <input type="text" name="delay" size="3" value="0" />sec 時計が動き出すまでの遅延時間
-          </td>
-         </tr>
-         <tr>
-          <th>
-           Byo-Yomi
-          </th>
-          <td>
-           <input type="text" name="byo" size="3" value="4" />sec 考慮時間を使い切ったあとの予備的な時間（切り捨て）
-          </td>
-         </tr>
-         <tr>
-          <th>
-           <del>Canadian</del>
-          </th>
-          <td>
-           複数手数毎に用意される考慮時間（切り捨て）
-          </td>
-         </tr>
-         <tr>
-          <th>
-           First
-          </th>
-          <td>
-           <input type="radio" name="first" value="b" checked="checked" />Black <input type="radio"
-           name="first" value="w" />White 最初の手番
-          </td>
-         </tr>
-         <tr>
-          <th>
-           Help
-          </th>
-          <td>
-           左ダブルクリック - 対局開始<br />
-           右クリック - 着手（黒白切り替え）<br />
-          </td>
-         </tr>
-        </table>
-       </form>
-       <p>
-        <a href="http://stone.dialog.jp/">Home</a>
-       </p>
-    </div>
-
+    <div class="timer">
+      <div id="container">
+        <div>
+          <div id="clock"></div>
+        </div>
+        <div class="controls">
+          <input type="button" id="startClock" onClick="startClock()" value="Start Clock"/> 
+            <input type="button" id="stopClock" onClick="stopClock()" value="Stop Clock"/>
+             <input type="button" id="stopClock" onClick="resetClock()" value="Reset Clock"/>
+         </div>
+         <div id="doc">
+          <h2>How to use:</h2>
+          <p>
+            <ol>
+              <li>Use gameclock.js:<br/><code>&lt;script  type=&quot;text/javascript&quot;  src=&quot;js/gameclock.js&quot;&gt;&lt;/script&gt;</code></li>
+              <li>Create an instance of the clock:
+                <code><pre>
+    var clock = new Clock({
+      time:9000,
+      displayEL:'clock',
+      stopAferTimeout:true,
+      resetAfterTimeout:false,
+      timeoutCallBack:stopme
+    });</pre></code>
+              <li>Start The clock: <code><pre>clock.StartClock();</pre></code> </li>
+              <li>Stop The clock: <code><pre>clock.StopClock();</pre></code> </li>
+              <li>Rest The clock: <code><pre>clock.ResetClock();</pre></code> </li>
+              <li>Configuration:
+                <ul>
+                  <li>displayEL: The display element. This will display the current state of the clock in a element.</li>
+                  <li>time: The amount of time for the game.</li>
+                  <li>stopAferTimeout: If true, will stop at zero. If false, will contine to display a negative time.</li>
+                  <li>resetAfterTimeout: If true, will reset the clock to the "time" value and continue to countdown.</li>
+                  <li>timeoutCallBack: A callback function that will fire when the clock reaches zero.</li>
+    
+                </ul>
+    
+            </ol>
+          </p>
+         </div>
+      </div>
+    
+    
+    
+      <script src="js/gameclock.js"></script>
+      <script>
+        var stopme = function(){
+          alert('Game Over!');
+        }
+        var clock = new Clock({
+          time:900000,
+          displayEL:'clock',
+          stopAferTimeout:true,
+          resetAfterTimeout:false,
+          timeoutCallBack:stopme
+        });
+        function stopClock(){
+            clock.StopClock();
+        }
+        function startClock(){
+           clock.StartClock(); 
+        }
+        function resetClock(){
+           clock.ResetClock(); 
+        }
+      </script>
+    
+    
+      <footer>
+      
+      </footer>
+    </body>
 
   </body>
 </html>

@@ -48,65 +48,41 @@ html {
 
 
 
-
-
-
-
-a {
-	text-decoration: none;
-	color: #069;
-}
-a:hover {   color: #EE0000; text-decoration: underline; }
-a:active {  color: #FF00FF; text-decoration: underline; }
-a:visited { color: #000099; }
-
 .timer {
-	line-height: 120%;
-	letter-spacing: 0.1em;
-	background-color: #fff;
-}
-td#BlackTime, td#WhiteTime {
-	font-size:800%;
-}
-th {
-	font-weight: normal;
-	background-color: #e8e7e6;
-	border: solid 1px #999;
-	border-color:#f8f7f6 #c8c7c3 #b8b7b6 #f5f4f3;
-}
-td {
-	background-color: #fff;
-	border: solid 1px #999;
-	border-color:#fffefd #dddcdb #cdcccb #fefdfc;
-	text-align: left;
-}
-form {
-	margin:0;
-	padding:0;
-}
-img.photo {
-	margin-left: 10px;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #666666 #cccccc #eeeeee #999999;	/*å‡¹*/
+    margin-top: 200px;
 }
 
-td.on {
-	color:#000;
-	background-color: #eef;
-}
-td.off {
-	color:#999;
-	background-color: #fff;
-}
-td.warning {
-	background-color: #f00;
+#container{
+	padding-top:50px;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	background-color:#fff;
+	height:900px;
+
 }
 
-/*
-th.ban {
-	background-color: #eef;
-	background-color: #dddd88;
-	background-image: url("cgoban.jpg");
+#clock{
+	position:relative;
+	border:solid 1px #ddd;
+	margin-left:auto;
+	margin-right:auto;
+	width:500px;
+	color:#fff;
+	background-color:#000;
+	font-size:9em;
+	box-shadow:5px 5px 2px #888;
+	font-family:  sans-serif;
+	text-align:center;
+
 }
-*/
+.controls{
+	margin-top:100px;
+	width:290px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#doc{
+	padding:20px;
+}
